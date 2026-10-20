@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terrarium — Glass Garden</title>
+<meta name="description" content="Build a living glass terrarium: layer substrate, plant mosses and ferns, add hardscape, and watch condensation cycle.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="ambient" aria-hidden="true"></div>
+
+<main class="lab" aria-labelledby="labTitle">
+  <header class="lab-head">
+    <div class="brand">
+      <p class="eyebrow">Specimen No. 04 · Desktop Biosphere</p>
+      <h1 id="labTitle">Terrarium</h1>
+      <p class="tagline">Layer. Plant. Mist. Observe.</p>
+    </div>
+    <div class="head-tools">
+      <button type="button" class="tool-btn" id="resetBtn" aria-label="Reset terrarium">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11a8 8 0 1 1 2.4 5.7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M4 5v6h6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Reset</span>
+      </button>
+      <button type="button" class="tool-btn ghost" id="exportBtn" aria-label="Export as image">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Export</span>
+      </button>
+    </div>
+  </header>
+
+  <div class="lab-body">
+    <section class="vessel-zone" aria-labelledby="vesselLabel">
+      <div class="vessel-wrap" id="vesselWrap">
+        <svg class="vessel-svg" id="vesselSvg" viewBox="0 0 300 400" role="img" aria-label="Glass terrarium vessel with layers, plants, and condensation"></svg>
+        <div class="condensation" id="condensation" aria-hidden="true"></div>
+        <div class="vessel-glass" id="vesselGlass" aria-hidden="true"></div>
+      </div>
+      <p class="sr-only" id="vesselLabel">Terrarium vessel</p>
+      <div class="vessel-hint" id="vesselHint">Select a tool, then tap inside the glass</div>
+    </section>
+
+    <aside class="tool-panel" aria-labelledby="toolLabel">
+      <div class="tool-head">
+        <h2 id="toolLabel">Workbench</h2>
+        <span class="tool-mode" id="toolMode">Select a layer</span>
+      </div>
+
+      <div class="tool-section" id="layerSection">
+        <h3 class="section-title">Substrate Layers</h3>
+        <p class="section-hint">Build bottom-up: drainage → charcoal → soil</p>
+        <div class="tool-grid" id="layerGrid" role="radiogroup" aria-label="Substrate layers"></div>
+      </div>
+
+      <div class="tool-section" id="plantSection">
+        <h3 class="section-title">Flora</h3>
+        <p class="section-hint">Tap to plant, tap planted to remove</p>
+        <div class="tool-grid" id="plantGrid" role="radiogroup" aria-label="Plants"></div>
+      </div>
+
+      <div class="tool-section" id="hardscapeSection">
+        <h3 class="section-title">Hardscape</h3>
+        <p class="section-hint">Rocks, wood, accents</p>
+        <div class="tool-grid" id="hardscapeGrid" role="radiogroup" aria-label="Hardscape"></div>
+      </div>
+
+      <div class="tool-section" id="actionSection">
+        <h3 class="section-title">Actions</h3>
+        <div class="action-grid">
+          <button type="button" class="action-btn" id="mistBtn" aria-label="Mist the terrarium">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 1 10 10c0 1.1-.2 2.2-.5 3.2M8 15a6 6 0 0 0 12 0" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M12 22v-4M12 16v-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span>Mist</span>
+          </button>
+          <button type="button" class="action-btn" id="cycleBtn" aria-label="Advance condensation cycle">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23 4v6h-6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M1 20v-6h6" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Cycle</span>
+          </button>
+          <button type="button" class="action-btn ghost" id="clearPlantsBtn" aria-label="Remove all plants">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            <span>Clear Flora</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="specimen-card" id="specimenCard" hidden>
+        <div class="specimen-head">
+          <span class="specimen-badge" id="specimenBadge">Layer</span>
+          <h3 id="specimenName">—</h3>
+        </div>
+        <p class="specimen-desc" id="specimenDesc">—</p>
+        <div class="specimen-meta" id="specimenMeta"></div>
+      </div>
+    </aside>
+  </div>
+
+  <footer class="lab-foot">
+    <p class="lab-note">Condensation cycles every 8s · Tap glass to mist · Data kept in this browser</p>
+    <p class="lab-credit">Terrarium · Specimen No. 04</p>
+  </footer>
+</main>
+
+<footer class="ambient-foot">
+  <span>Terrarium · Desktop Biosphere</span>
+  <span>Growing in this browser</span>
+</footer>
+
+<p class="sr-only" id="live" aria-live="polite"></p>
+<script src="app.js"></script>
+</body>
+</html>
