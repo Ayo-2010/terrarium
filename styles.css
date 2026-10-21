@@ -513,3 +513,22 @@ h1 {
   .action-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .specimen-meta { gap: 4px 8px; }
 }
+
+@media print {
+  body * { visibility: hidden; }
+  .vessel-wrap, .vessel-wrap * { visibility: visible; }
+  .specimen-card, .specimen-card * { visibility: visible; }
+  .vessel-wrap, .specimen-card {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20mm;
+    background: white;
+    box-shadow: none;
+    border: 2px solid var(--ink);
+    color: var(--ink);
+  }
+  .condensation, .vessel-glass, .tool-panel, .head-tools, .lab-foot { display: none; }
+  .lab { border: none; box-shadow: none; }
+}
